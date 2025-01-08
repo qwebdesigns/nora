@@ -4,132 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Крысиный Переводчик</title>
-    <style>
-        /* Основные стили */
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        
-        .input-group textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: vertical;
-        }
-        
-        .input-group button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .input-group button:hover {
-            background-color: #0056b3;
-        }
-        
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            position: relative;
-        }
-        
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            font-size: 14px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        .copy-button:hover {
-            background-color: #218838;
-        }
-        
-        /* Адаптация для телефонов */
-        
-        @media only screen and (max-width: 768px) {
-            .container {
-                max-width: 90%;
-            }
-        
-            .input-group textarea {
-                height: 80px;
-            }
-        
-            .input-group button {
-                padding: 5px 10px;
-                font-size: 14px;
-            }
-        
-            .output {
-                padding: 5px;
-            }
-        
-            .copy-button {
-                padding: 3px 5px;
-                font-size: 12px;
-            }
-        }
-        
-        /* Адаптация для ПК */
-        
-        @media only screen and (min-width: 769px) {
-            .container {
-                max-width: 600px;
-            }
-        
-            .input-group textarea {
-                height: 100px;
-            }
-        
-            .input-group button {
-                padding: 10px 20px;
-                font-size: 16px;
-            }
-        
-            .output {
-                padding: 10px;
-            }
-        
-            .copy-button {
-                padding: 5px 10px;
-                font-size: 14px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -152,94 +27,20 @@
             <button class="copy-button" onclick="copyOutput()">Копировать</button>
             <div id="output-text"></div>
         </div>
+
+        <!-- История переводов -->
+        <div class="history-container">
+            <div class="history human-history">
+                <h3>История человеческого языка</h3>
+                <ul id="human-history"></ul>
+            </div>
+            <div class="history rat-history">
+                <h3>История крысиного языка</h3>
+                <ul id="rat-history"></ul>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // Словарь для перевода с человеческого на крысиный
-        const humanToRat = {
-            'а': 'пи', 'б': 'ппи', 'в': 'пип', 'г': 'ппип', 'д': 'пипи',
-            'е': 'ппипи', 'ё': 'пипип', 'ж': 'ппипип', 'з': 'пипипи',
-            'и': 'ппипипи', 'й': 'пипипип', 'к': 'ппипипип',
-            'л': 'пипипипи', 'м': 'ппипипипи', 'н': 'пипипипип',
-            'о': 'ппипипипип', 'п': 'пипипипипи', 'р': 'ппипипипипи',
-            'с': 'пипипипипип', 'т': 'ппипипипипип', 'у': 'пипипипипипи',
-            'ф': 'ппипипипипипи', 'х': 'пипипипипипип', 'ц': 'ппипипипипипип',
-            'ч': 'пипипипипипипи', 'ш': 'ппипипипипипипи', 'щ': ' пипипипипипип',
-            'ъ': 'ппипипипипипипип', 'ы': 'пипипипипипипипи', 'ь': 'ппипипипипипипипи',
-            'э': 'пипипипипипипипип', 'ю': 'ппипипипипипипипип', 'я': 'пипипипипипипипипи',
-            ' ': 'П', // Пробел разделяет слова
-            'А': 'пиИ', 'Б': 'ппиИ', 'В': 'пипИ', 'Г': 'ппипИ', 'Д': 'пипиИ',
-            'Е': 'ппипиИ', 'Ё': 'пипипИ', 'Ж': 'ппипипИ', 'З': 'пипипиИ',
-            'И': 'ппипипиИ', 'Й': 'пипипипИ', 'К': 'ппипипипИ',
-            'Л': 'пипипипиИ', 'М': 'ппипипипиИ', 'Н': 'пипипипипИ',
-            'О': 'ппипипипипИ', 'П': 'пипипипипиИ', 'Р': 'ппипипипипиИ',
-            'С': 'пипипипипипИ', 'Т': 'ппипипипипипИ', 'У': 'пипипипипипиИ',
-            'Ф': 'ппипипипипипиИ', 'Х': 'пипипипипипипИ', 'Ц': 'ппипипипипипипИ',
-            'Ч': 'пипипипипипипиИ', 'Ш': 'ппипипипипипипиИ', 'Щ': 'пипипипипипипипИ',
-            'Ъ': 'ппипипипипипипипИ', 'Ы': 'пипипипипипипипиИ', 'Ь': 'ппипипипипипипипиИ',
-            'Э': 'пипипипипипипипипИ', 'Ю': 'ппипипипипипипипипИ', 'Я': 'пипипипипипипипипи',
-        };
-
-        // Словарь для перевода с крысиного на человеческий
-        const ratToHuman = Object.fromEntries(
-            Object.entries(humanToRat).map(([key, value]) => [value, key])
-        );
-
-        // Функция для перевода с человеческого на крысиный
-        function translateToRat() {
-            const humanText = document.getElementById('human-text').value;
-            const ratText = humanText
-                .split('') // Разбиваем текст на символы
-                .map(char => humanToRat[char] || char) // Переводим каждый символ
-                .join('И') // Соединяем символы с разделителем "И"
-                .replace(/И\s*П/g, 'П'); // Заменяем разделитель между словами
-            document.getElementById('output-text').innerText = ratText; // Выводим результат
-        }
-
-        // Функция для перевода с крысиного на человеческий
-        function translateToHuman() {
-            const ratText = document.getElementById('rat-text').value;
-            const humanText = ratText
-                .split('П') // Разбиваем текст на слова
-                .map(word => word.split('И').map(char => ratToHuman[char] || char).join('')) // Переводим каждое слово
-                .join(' '); // Соединяем слова с пробелами
-            document.getElementById('output-text').innerText = humanText; // Выводим результат
-        }
-
-        // Функция для копирования текста в буфер обмена
-        function copyOutput() {
-    const outputText = document.getElementById('output-text').innerText;
-
-    // Проверяем, поддерживается ли navigator.clipboard
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(outputText)
-            .then(() => {
-                alert('Текст скопирован в буфер обмена!');
-            })
-            .catch(err => {
-                console.error('Ошибка при копировании текста: ', err);
-                fallbackCopyText(outputText); // Используем fallback, если navigator.clipboard не сработал
-            });
-    } else {
-        fallbackCopyText(outputText); // Используем fallback, если navigator.clipboard не поддерживается
-    }
-}
-
-    // Fallback метод для копирования текста
-    function fallbackCopyText(text) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-            document.execCommand('copy');
-            alert('Текст скопирован в буфер обмена!');
-        } catch (err) {
-            console.error('Ошибка при копировании текста: ', err);
-            alert('Не удалось скопировать текст.');
-        }
-        document.body.removeChild(textarea);
-    }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

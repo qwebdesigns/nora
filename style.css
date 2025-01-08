@@ -1,0 +1,198 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.input-group button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-group button:hover {
+    background-color: #0056b3;
+}
+
+.output {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    background-color: #218838;
+}
+
+#output-text {
+    margin-top: 20px;
+}
+
+/* Стили для истории переводов */
+.history-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.history {
+    width: 48%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.history h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.history ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.history ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.history ul li:last-child {
+    border-bottom: none;
+}
+
+.human-history {
+    background-color: #f8f9fa;
+}
+
+.rat-history {
+    background-color: #e9ecef;
+}
+
+/* Адаптация для телефонов */
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .input-group textarea {
+        height: 80px;
+        font-size: 14px;
+    }
+
+    .input-group button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .output {
+        padding: 10px;
+    }
+
+    .copy-button {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+
+    .history-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .history {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .history h3 {
+        font-size: 16px;
+    }
+
+    .history ul li {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Адаптация для ПК */
+@media only screen and (min-width: 769px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    .input-group textarea {
+        height: 100px;
+    }
+
+    .input-group button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .output {
+        padding: 20px;
+    }
+
+    .copy-button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .history-container {
+        flex-direction: row;
+    }
+
+    .history {
+        width: 48%;
+    }
+}

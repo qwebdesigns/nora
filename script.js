@@ -117,12 +117,12 @@ const humanToRat = {
     '1': 'iipпIiipi', 
     '2': 'iipпипiipi', 
     '3': 'iipпИпiipi', 
-    '4': 'iipпипиiipi', 
+    '4': 'iipпаипиiipi', 
     '5': 'iipпИпИiipi', 
-    '6': 'iipпипипiipi', 
-    '7': 'iipпипИiipi', 
+    '6': 'iipппипипiipi', 
+    '7': 'iipпипиИiipi', 
     '8': 'iipпИпипiipi', 
-    '9': 'iipпИпИiipi',
+    '9': 'iipпИпиииИiipi',
     ' ': 'П'
 };
 // Словарь для перевода с крысиного на человеческий

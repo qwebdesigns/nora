@@ -285,7 +285,7 @@ function updateParallax(event) {
 
     // Вычисляем смещение фона
     const offsetX = -(mouseX / window.innerWidth - 0.5) * 50; // Смещение по X (от -25px до 25px)
-    const offsetY = -(mouseY / window.innerHeight - 0.5) * 50; // Смещение по Y (от -25px до 25px)
+    const offsetY = -(mouseY / window.innerHeight - 0.5) * 250; // Смещение по Y (от -25px до 25px)
 
     // Применяем смещение к фону
     parallaxBackground.style.transform = `translate(${offsetX}px, ${offsetY}px)`;

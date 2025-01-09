@@ -11,7 +11,7 @@ body {
     left: 0;
     width: 120%;
     height: 120vh;
-    background: url('./fon.webp') center center / cover no-repeat; /* Фоновое изображение */
+    background: url('./fon.webp') center top / cover no-repeat; /* Фоновое изображение */
     z-index: -1; /* Помещаем фон под остальным контентом */
     will-change: transform; /* Оптимизация для анимации */
 }

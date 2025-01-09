@@ -3,13 +3,32 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+}
+/* Основные стили для параллакс-фона */
+.parallax-background {
+    position: fixed; /* Фиксированное положение */
+    top: -10vh;
+    left: 0;
+    width: 120%;
+    height: 120vh;
+    background: url('./fon.webp') center center / cover no-repeat; /* Фоновое изображение */
+    z-index: -1; /* Помещаем фон под остальным контентом */
+    will-change: transform; /* Оптимизация для анимации */
 }
 
+/* Убедитесь, что основной контент находится поверх фона */
 .container {
+    position: relative;
+    z-index: 1; /* Контент поверх фона */
+    background: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон для контента */
+    border-radius: 10px;
+    margin-top: 20px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+.ten{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .input-group {
@@ -53,6 +72,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     position: relative;
+    overflow-x: hidden;
 }
 
 .copy-button {
@@ -88,6 +108,7 @@ body {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+    overflow-x: hidden;
 }
 
 .history h3 {

@@ -5,25 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Крысиный Переводчик</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
 </head>
 <body>
+    <div class="parallax-background"></div>
     <div class="container">
         <!-- Поле для ввода человеческого текста -->
         <div class="input-group">
             <label for="human-text">Человеческий язык:</label>
-            <textarea id="human-text" placeholder="Введите текст на человеческом языке..."></textarea>
+            <textarea class="ten" id="human-text" placeholder="Введите текст на человеческом языке..."></textarea>
             <button onclick="translateToRat()">Перевести на крысиный</button>
         </div>
 
         <!-- Поле для ввода крысиного текста -->
         <div class="input-group">
             <label for="rat-text">Крысиный язык:</label>
-            <textarea id="rat-text" placeholder="Введите текст на крысином языке..."></textarea>
+            <textarea class="ten" id="rat-text" placeholder="Введите текст на крысином языке..."></textarea>
             <button onclick="translateToHuman()">Перевести на человеческий</button>
         </div>
 
         <!-- Блок для вывода результата -->
-        <div class="output" id="output">
+        <div class="output ten" id="output">
             <button class="copy-button" onclick="copyOutput()">Копировать</button>
             <div id="output-text"></div>
         </div>
@@ -40,7 +45,7 @@
             </div>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
